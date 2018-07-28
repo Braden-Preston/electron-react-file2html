@@ -14,12 +14,15 @@ Adapted by Braden & Michael Preston.
 - [`react`]() v.16.4.0 
 - [`react-dom`]() v.16.4.0 
 - [`react-scripts`]() v.1.1.4 
+- [`file2html`]() v.0.1.9 
+- [`file2html-ooxml`]() v.0.2.2 
 - [`cross-env`]() v.5.1.6 
 - [`concurrently`]() v.3.5.1 
 - [`prettier`]() v.1.4.4 
 - [`wait-on`]() v.2.1.0 
 - [`jquery`]() v.3.3.1 
 - [`jquery-ui`]() v.1.12.1 
+- [`yarn`]() v.1.9.2
 
 
 ## Getting Started
