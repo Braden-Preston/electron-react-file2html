@@ -49,6 +49,7 @@ Looking to implement the following in the future!
 | Package  | What it Does  |
 | ------------ | ------------ |
 | [`devtron`]() | electron IPC, etc |
+| [`electron-packager`]() | cross platform packaging? |
 | [`electron-forge`]() | extensive build options; child is electron-builder |
 | [`OAuth2`]() | Authentication for Google services (for Google Drive) |
 | [`babel`]() |  |
