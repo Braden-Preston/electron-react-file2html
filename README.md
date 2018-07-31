@@ -86,15 +86,22 @@ Looking to implement the following in the future!
 
 ## Getting Started
 
-1.) Install yarn globally as a node module
+1.) Clone this repository and cd into the directory, or "Open in GitHub Desktop"
+```node
+	git clone https://github.com/Braden-Preston/electron-react-file2html
+	
+	cd electron-react-file2html
+```
+
+2.) Install yarn globally as a node module
 ```node
 	npm i -g yarn
 ```
-2.) Install app's dependancies. Creates /node-modules/ & package-lock.json
+3.) Install app's dependancies. Creates /node-modules/ & package-lock.json
 ```node
 	npm install
 ```
-3.) Start a development environment for React for live code editing! 😍
+4.) Start a development environment for React for live code editing! 😍
 ```node
 	yarn start
 ```
