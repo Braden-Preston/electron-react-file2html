@@ -5,9 +5,18 @@
   "version": "0.0.1",
   "private": true,
   "dependencies": {
+    "builtin-modules": "^3.0.0",
     "cross-env": "5.1.6",
+    "devtron": "^1.4.0",
+    "electron-debug": "^2.0.0",
     "electron-is-dev": "0.3.0",
     "electron-log": "^2.2.6",
+    "electron-react-devtools": "^0.5.3",
+    "file2html": "^0.1.9",
+    "file2html-image": "^0.1.1",
+    "file2html-ooxml": "^0.2.2",
+    "file2html-text": "^0.2.0",
+    "random-number": "0.0.9",
     "react": "16.4.0",
     "react-dom": "16.4.0",
     "update-electron-app": "^1.2.0"
@@ -21,6 +30,16 @@
     "wait-on": "2.1.0"
   },
   "build": {
+    "appId": "com.example.app",
+    "productName": "TPOT Letters",
+    "copyright": "Copyright ©2018 Michael & Braden Preston",
+    "asar": true,
+    "files": [
+      "package.json",
+      "build/",
+      "node_modules/",
+      "src/config/"
+    ],
     "publish": {
       "provider": "github"
     }
@@ -28,6 +47,7 @@
   "main": "public/electron.js",
   "homepage": "./",
   "scripts": {
+    "main": "electron .",
     "react-start": "react-scripts start",
     "react-build": "react-scripts build",
     "react-test": "react-scripts test --env=jsdom",

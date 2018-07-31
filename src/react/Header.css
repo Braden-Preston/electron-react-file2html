@@ -1,0 +1,13 @@
+.header {
+    position: relative;
+    height: auto;
+    width: 100vw;
+    background: hsl(48, 12%, 69%);
+    padding: 16px;
+}
+
+.header h1 {
+    margin: 0px;
+    padding: 0px;
+    position: relative;
+}
