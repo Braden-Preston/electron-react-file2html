@@ -45,7 +45,6 @@ Package Version: **0.0.01** (7/29/18)
 | [`file2html-text`](https://github.com/file2html/file2html-text) | 0.2.0 | file2html support for .txt |
 | [`buffer`](https://www.npmjs.com/package/buffer) | 5.2.0 | easily convert buffers to arrays and visa versa |
 | [`wapi`](https://github.com/WP-API/node-wpapi)  |  | WordPress RestAPI |
->>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
 
 
 #### Development
