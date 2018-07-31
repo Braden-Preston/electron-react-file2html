@@ -13,6 +13,7 @@ Package Version: **0.0.01** (7/29/18)
 
 | Package  | Version  | What it Does  |
 | ------------ | :------------: | ------------ |
+<<<<<<< HEAD
 | [`electron`]() | 2.0.2 |  Create desktop apps with node using HTML/CSS/JS |
 | [`electron-builder`]() | 20.15.1 |  |
 | [`electron-debug`]() | 0.3.0 | extra debug support for compiled js in window |
@@ -29,6 +30,24 @@ Package Version: **0.0.01** (7/29/18)
 | [`file2html-text`]() | 0.2.0 | file2html support for .txt |
 | [`buffer`]() | 5.2.0 | easily convert buffers to arrays and visa versa |
 | [`wapi`]()  |  | WordPress RestAPI |
+=======
+| [`electron`](https://www.npmjs.com/package/electron) | 2.0.2 |  Create desktop apps with node using HTML/CSS/JS |
+| [`electron-builder`](https://www.npmjs.com/package/electron-builder) | 20.15.1 |  |
+| [`electron-debug`](https://www.npmjs.com/package/electron-debug) | 0.3.0 | extra debug support for compiled js in window |
+| [`electron-is-dev`](https://www.npmjs.com/package/electron-is-dev) | 0.3.0 |  |
+| [`electron-log`](https://www.npmjs.com/package/electron-log) | 2.2.6 |  |
+| [`update-electron-app`](https://www.npmjs.com/package/update-electron-app) | 1.2.0 |  |
+| [`electron-react-devtools`](https://www.npmjs.com/package/electron-react-devtools) | 0.5.3 |  |
+| [`react`](https://www.npmjs.com/package/react) | 16.4.0 |  |
+| [`react-dom`](https://www.npmjs.com/package/react-dom) | 16.4.0 |  |
+| [`builtin-modules`](https://www.npmjs.com/package/builtin-modules) | 3.0.0 | See what what node modules are built-in |
+| [`file2html`](https://www.npmjs.com/package/file2html) | 0.1.9 | Convert various files into an html string |
+| [`file2html-image`](https://github.com/file2html/file2html-image) | 0.1.1 | file2html support for .png, .jpg, .bmp |
+| [`file2html-ooxml`](https://github.com/file2html/file2html-ooxml) | 0.2.2 | file2html support for .doc, docx. |
+| [`file2html-text`](https://github.com/file2html/file2html-text) | 0.2.0 | file2html support for .txt |
+| [`buffer`](https://www.npmjs.com/package/buffer) | 5.2.0 | easily convert buffers to arrays and visa versa |
+| [`wapi`](https://github.com/WP-API/node-wpapi)  |  | WordPress RestAPI |
+>>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
 
 
 #### Development
@@ -49,6 +68,11 @@ Looking to implement the following in the future!
 | Package  | What it Does  |
 | ------------ | ------------ |
 | [`devtron`]() | electron IPC, etc |
+<<<<<<< HEAD
+=======
+| [`react-loadable`](https://github.com/jamiebuilds/react-loadable) |  |
+| [`electron-packager`]() | cross platform packaging? |
+>>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
 | [`electron-forge`]() | extensive build options; child is electron-builder |
 | [`OAuth2`]() | Authentication for Google services (for Google Drive) |
 | [`babel`]() |  |
@@ -185,4 +209,8 @@ Make sure that `npm-install` has been run first. After you have the directory /n
 
 1.) [Reader]**.testFileMimeType()** is a function. It calls **lookup()** from `mime.js` module, which I believe freaks out when the filebuffer passes a file that has a null value for mimeType. 
 
+<<<<<<< HEAD
 2.) Even if #1 checks out, **.testFileMimeType()** is still being called against a [Reader] class. The way it is currently set up, the class constructor is one level lower than it should be. That is why testing the mimeType does not work, because it is trying to access a constructors method, while it is searching one level too high in the object. By setting it to reader[i].default, you are going to be accessing the default constructor, which contains the **.testFileMimeType()** function.
+=======
+2.) Even if #1 checks out, **.testFileMimeType()** is still being called against a [Reader] class. The way it is currently set up, the class constructor is one level lower than it should be. That is why testing the mimeType does not work, because it is trying to access a constructors method, while it is searching one level too high in the object. By setting it to reader[i].default, you are going to be accessing the default constructor, which contains the **.testFileMimeType()** function.
+>>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
