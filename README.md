@@ -13,7 +13,6 @@ Package Version: **0.0.01** (7/29/18)
 
 | Package  | Version  | What it Does  |
 | ------------ | :------------: | ------------ |
-<<<<<<< HEAD
 | [`electron`]() | 2.0.2 |  Create desktop apps with node using HTML/CSS/JS |
 | [`electron-builder`]() | 20.15.1 |  |
 | [`electron-debug`]() | 0.3.0 | extra debug support for compiled js in window |
@@ -30,7 +29,6 @@ Package Version: **0.0.01** (7/29/18)
 | [`file2html-text`]() | 0.2.0 | file2html support for .txt |
 | [`buffer`]() | 5.2.0 | easily convert buffers to arrays and visa versa |
 | [`wapi`]()  |  | WordPress RestAPI |
-=======
 | [`electron`](https://www.npmjs.com/package/electron) | 2.0.2 |  Create desktop apps with node using HTML/CSS/JS |
 | [`electron-builder`](https://www.npmjs.com/package/electron-builder) | 20.15.1 |  |
 | [`electron-debug`](https://www.npmjs.com/package/electron-debug) | 0.3.0 | extra debug support for compiled js in window |
@@ -68,11 +66,8 @@ Looking to implement the following in the future!
 | Package  | What it Does  |
 | ------------ | ------------ |
 | [`devtron`]() | electron IPC, etc |
-<<<<<<< HEAD
-=======
 | [`react-loadable`](https://github.com/jamiebuilds/react-loadable) |  |
 | [`electron-packager`]() | cross platform packaging? |
->>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
 | [`electron-forge`]() | extensive build options; child is electron-builder |
 | [`OAuth2`]() | Authentication for Google services (for Google Drive) |
 | [`babel`]() |  |
@@ -209,8 +204,4 @@ Make sure that `npm-install` has been run first. After you have the directory /n
 
 1.) [Reader]**.testFileMimeType()** is a function. It calls **lookup()** from `mime.js` module, which I believe freaks out when the filebuffer passes a file that has a null value for mimeType. 
 
-<<<<<<< HEAD
 2.) Even if #1 checks out, **.testFileMimeType()** is still being called against a [Reader] class. The way it is currently set up, the class constructor is one level lower than it should be. That is why testing the mimeType does not work, because it is trying to access a constructors method, while it is searching one level too high in the object. By setting it to reader[i].default, you are going to be accessing the default constructor, which contains the **.testFileMimeType()** function.
-=======
-2.) Even if #1 checks out, **.testFileMimeType()** is still being called against a [Reader] class. The way it is currently set up, the class constructor is one level lower than it should be. That is why testing the mimeType does not work, because it is trying to access a constructors method, while it is searching one level too high in the object. By setting it to reader[i].default, you are going to be accessing the default constructor, which contains the **.testFileMimeType()** function.
->>>>>>> ad7870e710092ec958bc4783e9655e464c4b7b90
