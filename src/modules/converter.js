@@ -4,15 +4,12 @@ const remote = electron.remote
 const app = remote.app
 const ipc = electron.ipcRenderer;
 
-// Electron
-  //
-
 // Node built-in
 const fs = remote.require('fs')
 const path = remote.require('path') 
 
 // Custom/Community
-const rn = require('random-number');
+    // Code Here
 
 // File2Html
 const file2html = require('file2html')
@@ -22,34 +19,99 @@ const ImageReader = require('file2html-image').default
 
 
 
+// FUNCTIONS & UTILITIES
 
-console.log(rn())
+function lookupMimeType(filename) {
+    const mimeTypes = {
+        png: 'image/png',
+        gif: 'image/gif',
+        jpg: 'image/jpg',
+        jpeg: 'image/jpeg',
+        pjpeg: 'image/pjpeg',
+        svg: 'image/svg+xml',
+        ico: 'image/x-icon',
+        txt: 'text/plain',
+        doc: 'application/msword',
+        docx: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        fb: 'application/x-fictionbook+xml',
+        fb2: 'application/x-fictionbook+xml',
+        'fb2.zip': 'application/x-zip-compressed-fb2',
+        odt: 'application/vnd.oasis.opendocument.text',
+        sxw: 'application/vnd.sun.xml.writer',
+        epub: 'application/epub+zip',
+        woff: 'application/font-woff',
+        woff2: 'application/font-woff2',
+        csv: 'text/csv',
+        tsv: 'text/tab-separated-values',
+        tab: 'text/tab-separated-values',
+        djvu: 'image/vnd.djvu',
+        djv: 'image/vnd.djvu',
+        zip: 'application/zip',
+        rtf: 'application/rtf'
+    };
 
+    if (filename) {
+        console.log(filename)
+        let filenameSimple = filename.toLowerCase()
+        for (var extension in mimeTypes) {
+            if (mimeTypes.hasOwnProperty(extension)) {
+                let extentsionSlice = filenameSimple.slice(filenameSimple.length - extension.length, filenameSimple.length)
+                if (extentsionSlice == extension) {
+                    console.log("GOOD!: ", extension, mimeTypes[extension])
+                    return mimeTypes[extension]
+                } 
+            }
+        }
+    }
+}
 
-  
-ipc.on('asynchronous-reply', (event, arg) => {
-  console.log(arg) // prints "pong"
-})
-ipc.send('asynchronous-message', 'ping')
+function convertFile(name) {
 
+    console.group("CONVERT FILE " + name)
+    let filePath = getConfigPath(name)
+    let mime = lookupMimeType(name)
 
+    file2html.config({
+        readers: [
+            TextReader,
+            OOXMLReader,
+            ImageReader
+        ]
+    });
 
+    fs.readFile(filePath, function (err, data) {
+        if (err) {
+            // throw err
+        } else {
+            console.log('Buffer: ', data);
+            let fileBuffer = data // this declaration is needed
+            file2html.read({
+                fileBuffer,
+                meta: {
+                    mimeType: mime
+                }
+            }).then((file) => {
+                const {styles, content} = file.getData()		
+                const meta = file.getMeta()
+                console.groupEnd()
+                saveFile({ css: styles, html: content, meta: meta })
+                
+            });
+        }
+    });
+}
 
-
-
-// Convert a .DOCX file
-const docx = (fileName)=> {
-    console.log("%c Converted Document", "color: hsl(133, 55%, 54%);", fileName)
-    return convertFile(fileName, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-};
-
-const test = ()=> {
-    console.log("%c Document Converter Module Loaded!", "color: hsl(199, 76%, 59%);")
-};
-
-module.exports ={  
-    test,
-    docx
+function saveFile(json) {
+    let fileContents = JSON.stringify(json)
+    console.log(json)
+    fs.writeFile(path.join(getConfigPath(), "post.json"), fileContents, (err)=>{
+        if (err) {
+            throw err
+        } else {
+            // printConfigDir() // print index again to see newly created save file
+            console.log("File Saved to Disk")
+        }
+    })
 }
 
 function getConfigPath(file) {
@@ -66,51 +128,15 @@ function printConfigDir() {
     })
 }
 
-function convertFile(name, mime) {
-    console.group("CONVERT FILE " + name)
-    let filePath = getConfigPath(name)
-    console.log("File Path", filePath)
-    let mimeType = mime
+const test = ()=> {
+    console.log("%c Document Converter Module Loaded!", "color: hsl(199, 76%, 59%);")
+};
 
-    printConfigDir() // print index of files contained in programfiles/config
 
-    file2html.config({
-        readers: [
-            TextReader,
-            OOXMLReader,
-            ImageReader
-        ]
-    });
 
-    fs.readFile(filePath, function (err, data) {
-        if (err) {
-            // throw err
-        } else {
-            console.log('Read File!', filePath, data);
-            let fileBuffer = data // contents needs to be stored to use in file2html
-            file2html.read({
-                fileBuffer,
-                meta: {
-                    mimeType: mimeType
-                }
-            }).then((file) => {
-                const {styles, content} = file.getData()		
-                const meta = file.getMeta()
-                saveFile({ css: styles, html: content, meta: meta })
-                return { css: styles, html: content, meta: meta }
-            });
-        }
-    });
+// EXPORTS
+
+module.exports = {  
+    convertFile,
+    test
 }
-
-function saveFile(json) {
-    let fileContents = JSON.stringify(json)
-    console.log(json)
-    fs.writeFile(path.join(getConfigPath(), "post.json"), fileContents, (err)=>{
-        if (err) throw err
-        console.log("SAVED CONVERTED FILE!")
-        console.groupEnd()
-        printConfigDir() // print index again to see newly created save file
-    })
-}
-

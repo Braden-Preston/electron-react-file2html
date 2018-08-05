@@ -19,11 +19,16 @@ require("update-electron-app")({
   updateInterval: "1 hour"
 });
 
-function createWindow() {
+
+function createWindow(offset) {
+  console.log(offset)
+
   const windowOptions = {
-    width: 1400,
+    // width: 1100,
+    x: offset.x,
+    y: offset.y,
+    width: 1700,
     height: 700,
-    backgroundColor: '#fff',
     center: true
   }
   mainWindow = new BrowserWindow(windowOptions);
@@ -32,6 +37,7 @@ function createWindow() {
       ? "http://localhost:3000"
       : `file://${path.join(__dirname, "../build/index.html")}`
   );
+  mainWindow.setMenu(null)
   mainWindow.webContents.openDevTools()
   mainWindow.on("closed", () => (mainWindow = null));
 
@@ -53,7 +59,25 @@ function createWindow() {
 
 }
 
-app.on("ready", createWindow);
+app.on("ready", ()=>{
+  var electronScreen = electron.screen;
+  var displays = electronScreen.getAllDisplays();
+  var externalDisplay = null;
+  for (var i in displays) {
+    if (displays[i].bounds.x != 0 || displays[i].bounds.y != 0) {
+      externalDisplay = displays[i];
+      break;
+    }
+  }
+
+  if (externalDisplay) {
+    let offset = {
+      x: externalDisplay.bounds.x + 110,
+      y: externalDisplay.bounds.y + 170
+    }
+    createWindow(offset)
+  }
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
