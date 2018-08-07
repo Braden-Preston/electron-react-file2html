@@ -12,7 +12,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import { mailFolderListItems } from './DrawerMenuList';
+import DrawerMenuList from './DrawerMenuList';
 import Header from './Header'
 import Button from '@material-ui/core/Button';
 import PreviewIcon from '@material-ui/icons/LaptopMacTwoTone';
@@ -146,7 +146,7 @@ class MiniDrawer extends React.Component {
           }}
         >
           <div className={classes.toolbar}/>
-          <List>{mailFolderListItems}</List>
+          <DrawerMenuList/>
         </Drawer>
 
         {/* DOCUMENT */}

@@ -118,6 +118,7 @@ class SignIn extends React.Component {
           type="text"
           autoComplete="current-password"
           margin="normal"
+          fullWidth
           />
           <TextField
           id="password-input"
@@ -126,6 +127,7 @@ class SignIn extends React.Component {
           type="password"
           autoComplete="current-password"
           margin="normal"
+          fullWidth
           />
           {/* <Divider/> */}
 

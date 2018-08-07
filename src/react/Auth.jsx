@@ -30,7 +30,7 @@ import AccountIcon from '@material-ui/icons/AccountBoxOutlined'
 import SettingsIcon from '@material-ui/icons/SettingsRounded'
 import InfoIcon from '@material-ui/icons/InfoOutlined';
 import LogoutIcon from '@material-ui/icons/ExitToApp';
-import SignIn from './SignIn'
+import ModalFirebase from './ModalFirebase'
 
 
 
@@ -196,7 +196,7 @@ class Auth extends React.Component{
             }
             {/* Not Authorized, Show Firebase SignIn Modal */}
             {this.state.modal && 
-               <SignIn open={this.state.modal} onUpdate={this.updateModal}/>
+               <ModalFirebase open={this.state.modal} onUpdate={this.updateModal}/>
             }
         </div>
     )

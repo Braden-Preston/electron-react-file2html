@@ -1,4 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { withStyles } from '@material-ui/core/styles';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -16,66 +20,106 @@ import SendIcon from '@material-ui/icons/Send';
 import Divider from '@material-ui/core/Divider';
 import ColorLens from '@material-ui/icons/ColorLens';
 // import Settings from '@material-ui/icons/Tune';
-import Settings from '@material-ui/icons/SettingsRounded'
+import SettingsIcon from '@material-ui/icons/SettingsRounded'
+import ModalLoad from './ModalLoad'
 
 
 const styles = theme => ({
+  root: {
+    paddingTop: 8,
+  },
   settings: {
     position: "absolute",
-    bottomMargin: 0,
-    color: "red",
-    height: 100
-  }
+    bottom: 8,
+  },
 });
 
-export const mailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <CloudDownload />
-      </ListItemIcon>
-      <ListItemText primary="Load" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <Save />
-      </ListItemIcon>
-      <ListItemText primary="Save" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DraftsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Drafts" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <SendIcon />
-      </ListItemIcon>
-      <ListItemText primary="Publish" />
-    </ListItem>
-  </div>
-);
 
-export const otherMailFolderListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="All mail" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <DeleteIcon />
-      </ListItemIcon>
-      <ListItemText primary="Trash" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <ReportIcon />
-      </ListItemIcon>
-      <ListItemText primary="Spam" />
-    </ListItem>
-  </div>
-);
+class DrawerMenuList extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loadModalOpen: false,
+    }
+  }
+  
+  openLoadModal = ()=> {
+    this.setState({ loadModalOpen: true })
+  }
+
+  updateLoadModal = (b)=> {
+    this.setState({ loadModalOpen: b })
+  }
+
+  render() {
+    const { classes } = this.props;
+
+    return (
+      <div className={classes.root}>
+        <ListItem button onClick={this.openLoadModal}>
+          <ListItemIcon>
+            <CloudDownload />
+          </ListItemIcon>
+          <ListItemText primary="Load" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <Save />
+          </ListItemIcon>
+          <ListItemText primary="Save" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <DraftsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Drafts" />
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <SendIcon />
+          </ListItemIcon>
+          <ListItemText primary="Publish" />
+        </ListItem>
+        <ListItem button className={classes.settings}>
+          <ListItemIcon>
+            <SettingsIcon />
+          </ListItemIcon>
+          <ListItemText primary="Settings" />
+        </ListItem>
+        <ModalLoad open={this.state.loadModalOpen} onUpdate={this.updateLoadModal}/>
+      </div>
+    );
+  }
+}
+
+DrawerMenuList.propTypes = {
+  classes: PropTypes.object.isRequired,
+  // theme: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(DrawerMenuList);
+
+
+// export const otherMailFolderListItems = (
+//   <div>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <MailIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="All mail" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <DeleteIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Trash" />
+//     </ListItem>
+//     <ListItem button>
+//       <ListItemIcon>
+//         <ReportIcon />
+//       </ListItemIcon>
+//       <ListItemText primary="Spam" />
+//     </ListItem>
+//   </div>
+// );
